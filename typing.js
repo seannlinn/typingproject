@@ -9,6 +9,13 @@ found thought went say part once general high upon school every don't does got u
 less public often asked enough took hand put government own called second later report according large own known".split(" ");
 const wordsCount = words.length;
 
+function addClass(el, name){
+    el.className += ' '+name;
+}
+
+function removeClass(el, name) {
+    el.className = el.className.replace(name,'');
+}
 
 function generateWord() {
     const randomIndex = Math.floor(Math.random() * wordsCount);
@@ -16,7 +23,7 @@ function generateWord() {
 }
 
 function formatWord(word) {
-    return `<div class="word">${word}</div>`;
+    return `<div class="word"><span class = letter>${word.split('').join('</span><span class="letter">')}</div>`;
 }
 
 function newGame() {
@@ -24,6 +31,12 @@ function newGame() {
     for (let i = 0; i < 200; i++) {
         document.getElementById('words').innerHTML += formatWord(generateWord());
     }
+    addClass(document.querySelector('.word'), 'current');
+    addClass(document.querySelector('.letter'), 'current');
 }
 
+document.getElementById("game").addEventListener('keydown', ev => {
+    const key = ev.key;
+    
+})
 newGame();
